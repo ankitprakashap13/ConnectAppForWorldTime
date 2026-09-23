@@ -6,7 +6,7 @@
     "name": "Ankit Prakash (test)",
     "url": "https://github.com/ankitprakashap13"
   },
-    "baseUrl": "https://ankitprakash.com/ConnectAppForWorldTime",
+  "baseUrl": "https://ankitprakash.com/ConnectAppForWorldTime",
   "authentication": { "type": "none" },
   "apiVersion": 1,
   "modules": {
