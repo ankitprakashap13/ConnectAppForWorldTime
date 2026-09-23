@@ -1,0 +1,22 @@
+{
+  "key": "world-time-connect-ankitprakash",
+  "name": "World Time",
+  "description": "Simple test Connect app that shows world times on the issue view.",
+  "vendor": {
+    "name": "Ankit Prakash (test)",
+    "url": "https://github.com/ankitprakashap13"
+  },
+  "baseUrl": "https://ankitprakashap13.github.io/ConnectAppForWorldTime",
+  "authentication": { "type": "none" },
+  "apiVersion": 1,
+  "modules": {
+    "webPanels": [
+      {
+        "key": "world-time-panel",
+        "location": "atl.jira.view.issue.right.context",
+        "name": { "value": "World Time" },
+        "url": "/panel.html?issueKey={issue.key}"
+      }
+    ]
+  }
+}
