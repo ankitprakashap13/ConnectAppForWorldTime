@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://connect-cdn.atl-paas.net/all.js"></script>
+    <style>
+      body { margin: 0; padding: 8px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 14px; color: #172B4D; }
+      table { width: 100%; border-collapse: collapse; }
+      td { padding: 4px 0; }
+      td.time { text-align: right; font-variant-numeric: tabular-nums; }
+      button { margin-top: 8px; }
+    </style>
+  </head>
+  <body>
+    <p>Work item: <strong id="issue-key">-</strong></p>
+    <table id="clocks"></table>
+    <button id="toggle" type="button">Switch to 24-hour</button>
+
+    <script>
+      var cities = [
+        ['Bengaluru', 'Asia/Kolkata'],
+        ['London', 'Europe/London'],
+        ['New York', 'America/New_York'],
+        ['San Francisco', 'America/Los_Angeles'],
+        ['Sydney', 'Australia/Sydney']
+      ];
+      var use24h = false;
+
+      document.getElementById('issue-key').textContent =
+        new URLSearchParams(window.location.search).get('issueKey') || '-';
+
+      function render() {
+        var rows = '';
+        var now = new Date();
+        for (var i = 0; i < cities.length; i++) {
+          var time = now.toLocaleTimeString('en-GB', {
+            timeZone: cities[i][1],
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: !use24h
+          });
+          rows += '<tr><td>' + cities[i][0] + '</td><td class="time">' + time + '</td></tr>';
+        }
+        document.getElementById('clocks').innerHTML = rows;
+      }
+
+      document.getElementById('toggle').onclick = function () {
+        use24h = !use24h;
+        this.textContent = use24h ? 'Switch to 12-hour' : 'Switch to 24-hour';
+        render();
+      };
+
+      render();
+      setInterval(render, 30000);
+    </script>
+  </body>
+</html>
